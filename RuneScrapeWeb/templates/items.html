@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block content %}
+
+	<table id="tbl_items">
+		<thead>
+			<tr>
+				<th>name</th>
+				<th>buy_limit</th>
+				<th>members</th>
+			</tr>		
+		</thead>
+		<tbody>
+			{% for item in items %}
+			<tr>
+				<td><a href="{{ url_for('items.item', item_name=item.name) }}">{{ item.name }}</a></td>
+				<td>{{ item.buy_limit }}</td>
+				<td>{{ item.members }}</td>
+			</tr>
+			{% endfor %}			
+		</tbody>
+	</table>
+
+	<!-- For now we can use dataTable, but after we implement images for manga, 
+		we may have a lot of server strain, so then we'll do a serverside processed list -->
+	<script>
+		$('#tbl_items').dataTable();
+	</script>
+{% endblock content %}
